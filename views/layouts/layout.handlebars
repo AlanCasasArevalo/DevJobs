@@ -12,9 +12,29 @@
     <div class="nombre-sitio contenedor">
         <h1>
             <a href="/">devJobs</a>
+            {{#if barra}}
+                <div class="buscador">
+                    <form action="#">
+                        <input type="text" class="buscar">
+                        <input type="submit" value="Buscar">
+                    </form>
+                </div>
+            {{/if}}
         </h1>
     </div>
-    <div class="contenido-principal contenedor">
+
+    <header class="site-header contenedor separador">
+        <h2>{{ pageName }}</h2>
+        <p class="tagline">
+            {{#if tagline}}
+                {{tagline}}
+            {{/if}}
+        </p>
+        {{#if boton}}
+            <a href="/vacantes/nueva" class="btn btn-azul">Publicar nueva vacante</a>
+        {{/if}}
+    </header>
+    <div class="contenido-superior contenedor">
         {{{ body }}}
     </div>
 </body>
