@@ -9,5 +9,7 @@ MongoClient.connection.on('error', (error) => {
     console.log('Error: ', error)
 });
 
+// import model
+require('../models/Vacancies');
 
 
