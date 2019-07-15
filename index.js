@@ -14,7 +14,8 @@ const MongoStore = require('connect-mongo')(session);
 // habilitar las vistas ocn handlebars
 app.engine('handlebars',
     exphbs({
-        defaultLayout: 'layout'
+        defaultLayout: 'layout',
+        helpers: require('./helpers/handlebars')
     })
 );
 
