@@ -20,7 +20,8 @@
     "express-session": "^1.16.2",
     "mongoose": "^5.3.7",
     "shortid": "^2.2.14",
-    "slug": "^1.1.0"
+    "slug": "^1.1.0",
+    "body-parser": "latest"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",

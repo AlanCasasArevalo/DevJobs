@@ -16,6 +16,10 @@ module.exports = () => {
         vacancyController.newVacancyForm
     );
 
+    router.post('/vacancies/new',
+        vacancyController.addNewVacancy
+    );
+
 
     return router;
 };

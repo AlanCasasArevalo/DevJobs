@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 require('./config/db');
+const bodyParser = require('body-parser');
 const express = require('express');
 const path = require('path');
 const exphbs = require('express-handlebars');
@@ -10,6 +11,10 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 // habilitar las vistas ocn handlebars
 app.engine('handlebars',

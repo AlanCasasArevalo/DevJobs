@@ -43,14 +43,12 @@ const vacanciesSchema = new mongoose.Schema({
     }]
 });
 
-vacanciesSchema.pre('save', (next) => {
+vacanciesSchema.pre('save', function (next) {
     const url = slug(this.title);
 
     if (url && typeof url !== 'undefined') {
         this.url = `${url}-${shortId.generate()}`;
     }
-
-    
 
     next();
 });
