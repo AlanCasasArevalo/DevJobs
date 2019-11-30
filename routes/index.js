@@ -5,6 +5,7 @@ const vacancyController = require('../controllers/vacancyController');
 
 module.exports = () => {
 
+
     router.get ('/', (req, res) => {
         res.send('funciona')
     });
@@ -17,10 +18,13 @@ module.exports = () => {
         vacancyController.newVacancyForm
     );
 
+    router.get('/vacancies/:url',
+        vacancyController.showVacancy
+    );
+
     router.post('/vacancies/new',
         vacancyController.addNewVacancy
     );
-
     router.get('*', async (req, res) => {
         res.status(404).json({
             result: false,
@@ -70,7 +74,6 @@ module.exports = () => {
         })
     });
 
-
     router.options('*', async (req, res) => {
         res.status(404).json({
             result: false,
@@ -91,7 +94,6 @@ module.exports = () => {
             message: 'Direccion no encontrada'
         })
     });
-
     return router;
 };
 

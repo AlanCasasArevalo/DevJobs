@@ -25,3 +25,38 @@ exports.addNewVacancy = async (req, res) => {
 
     }
 };
+
+exports.showVacancy = async (req, res, next) => {
+    const vacancy = await Vacancy.findOne({ url: req.params.url });
+
+    if (!vacancy) return next();
+
+    if (vacancy && typeof vacancy !== 'undefined') {
+        console.log('vacancy', vacancy);
+        //Aqui podemos o bien hacer un render, redirect o bien un return del jsons
+
+        res.render('vacancy', {
+            vacancy,
+            pageName: vacancy.company,
+            barra: true
+        })
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
