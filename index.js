@@ -45,5 +45,5 @@ app.set('view engine', 'handlebars');
 app.use('/', router());
 
 
-app.listen(process.env.PORT);
+app.listen(process.env.PORT || 3000);
 
