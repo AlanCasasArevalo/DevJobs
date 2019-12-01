@@ -18,13 +18,22 @@ module.exports = () => {
         vacancyController.newVacancyForm
     );
 
+    router.post('/vacancies/new',
+        vacancyController.addNewVacancy
+    );
     router.get('/vacancies/:url',
         vacancyController.showVacancy
     );
 
-    router.post('/vacancies/new',
-        vacancyController.addNewVacancy
+    router.get('/vacancy/edit/:url',
+        vacancyController.formEditVacancy
     );
+
+
+
+
+
+    //Security paths
     router.get('*', async (req, res) => {
         res.status(404).json({
             result: false,

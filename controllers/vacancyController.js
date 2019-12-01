@@ -43,6 +43,21 @@ exports.showVacancy = async (req, res, next) => {
     }
 };
 
+exports.formEditVacancy = async (req, res, next) => {
+    const vacancy = await Vacancy.findOne({ url: req.params.url });
+
+    if (!vacancy) return next();
+
+    if (vacancy && typeof vacancy !== 'undefined') {
+        res.render('edit-vacancy', {
+            vacancy,
+            pageName: `Editar - ${ vacancy.title }`,
+            barra: true
+        })
+    }
+
+};
+
 
 
 
