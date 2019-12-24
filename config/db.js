@@ -11,5 +11,6 @@ MongoClient.connection.on('error', (error) => {
 
 // import model
 require('../models/Vacancies');
+require('../models/Users');
 
 

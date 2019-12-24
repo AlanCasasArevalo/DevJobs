@@ -39,10 +39,16 @@ module.exports = () => {
         usersAccountController.formCreationAccount
     );
 
+    router.post ('/usersAccount/creation-account',
+        usersAccountController.userCreation
+    );
+
     //Creacion de cuentas
     router.get ('/usersAccount/session-init',
         usersAccountController.initSession
     );
+
+
 
 
 
