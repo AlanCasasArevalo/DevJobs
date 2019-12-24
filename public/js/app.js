@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (skills && typeof skills !== 'undefined'){
         skills.addEventListener('click', addNewSkill)
+        // Si estamos en editar llamamos a la funcion
+        skillsSelected ()
     }
 
 });
@@ -24,4 +26,16 @@ const addNewSkill = (e) => {
         const skillsArray = [...skills];
         document.querySelector('#skills').value = skillsArray;
     }
+};
+
+const skillsSelected = () => {
+    const selected = Array.from(document.querySelectorAll('.lista-conocimientos .activo'));
+    const skillsArray = [...skills];
+
+    selected.forEach( selected => {
+       skills.add(selected.textContent);
+    });
+
+    document.querySelector('#skills').value = skillsArray
+    console.log('Seleccionadas:', selected);
 };
