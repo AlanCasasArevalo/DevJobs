@@ -14,7 +14,10 @@ exports.addNewVacancy = async (req, res) => {
 
     if (vacancyBody && typeof vacancyBody !== 'undefined') {
         const vacancy = new Vacancy(vacancyBody);
-        vacancy.skills = vacancyBody.skills.split(',');
+
+        if (typeof vacancy.skills == "string") {
+            vacancy.skills = vacancy.skills.split(',');
+        }
 
         const newVacancy = await vacancy.save();
 
@@ -60,7 +63,9 @@ exports.formEditVacancy = async (req, res, next) => {
 
 exports.editVacancy = async (req, res) => {
     const vacancyUpdated = req.body;
-    vacancyUpdated.skills = req.body.skills.split(',');
+    if (typeof vacancyUpdated.skills == "string") {
+        vacancyUpdated.skills = vacancyUpdated.skills.split(',');
+    }
     if (vacancyUpdated && typeof vacancyUpdated !== 'undefined') {
         const vacancyToUpdate = await Vacancy.findOneAndUpdate({url: req.params.url}, vacancyUpdated,
             {

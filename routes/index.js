@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const homeController = require('../controllers/homeController');
 const vacancyController = require('../controllers/vacancyController');
+const usersAccountController = require('../controllers/usersAccountController');
 
 module.exports = () => {
 
@@ -33,8 +34,15 @@ module.exports = () => {
         vacancyController.formEditVacancy
     );
 
+    //Creacion de cuentas
+    router.get ('/usersAccount/creation-account',
+        usersAccountController.formCreationAccount
+    );
 
-
+    //Creacion de cuentas
+    router.get ('/usersAccount/session-init',
+        usersAccountController.initSession
+    );
 
 
 
