@@ -27,7 +27,7 @@ exports.addNewVacancy = async (req, res) => {
 };
 
 exports.showVacancy = async (req, res, next) => {
-    const vacancy = await Vacancy.findOne({ url: req.params.url });
+    const vacancy = await Vacancy.findOne({url: req.params.url});
 
     if (!vacancy) return next();
 
@@ -44,18 +44,32 @@ exports.showVacancy = async (req, res, next) => {
 };
 
 exports.formEditVacancy = async (req, res, next) => {
-    const vacancy = await Vacancy.findOne({ url: req.params.url });
+    const vacancy = await Vacancy.findOne({url: req.params.url});
 
     if (!vacancy) return next();
 
     if (vacancy && typeof vacancy !== 'undefined') {
         res.render('edit-vacancy', {
             vacancy,
-            pageName: `Editar - ${ vacancy.title }`,
+            pageName: `Editar - ${vacancy.title}`,
             barra: true
         })
     }
 
+};
+
+exports.editVacancy = async (req, res) => {
+    const vacancyUpdated = req.body;
+    vacancyUpdated.skills = req.body.skills.split(',');
+    if (vacancyUpdated && typeof vacancyUpdated !== 'undefined') {
+        const vacancyToUpdate = await Vacancy.findOneAndUpdate({url: req.params.url}, vacancyUpdated,
+            {
+                new: true,
+                runValidators: true
+            });
+        console.log('', vacancyToUpdate.url);
+        res.redirect(`/vacancies/edit/${vacancyToUpdate.url}`);
+    }
 };
 
 

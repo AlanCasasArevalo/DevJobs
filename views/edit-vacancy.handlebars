@@ -24,11 +24,13 @@
         <div class="campo">
             <label for="">Contrato</label>
             <select name="contract">
-                <option value="" disabled selected> --- Selecciona ---</option>
-                <option value="freelance"> Freelance</option>
-                <option value="full-time"> Tiempo completo</option>
-                <option value="half-time"> Medio tiempo</option>
-                <option value="by-project"> Por proyecto</option>
+                {{#contractType vacancy.contract}}
+                    <option value="" disabled selected> --- Selecciona --- </option>
+                    <option value="freelance"> Freelance</option>
+                    <option value="full-time"> Tiempo completo</option>
+                    <option value="half-time"> Medio tiempo</option>
+                    <option value="by-project"> Por proyecto</option>
+                {{/contractType}}
             </select>
         </div>
 

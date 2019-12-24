@@ -25,9 +25,14 @@ module.exports = () => {
         vacancyController.showVacancy
     );
 
-    router.get('/vacancy/edit/:url',
+    router.post('/vacancies/edit/:url',
+        vacancyController.editVacancy
+    );
+
+    router.get('/vacancies/edit/:url',
         vacancyController.formEditVacancy
     );
+
 
 
 

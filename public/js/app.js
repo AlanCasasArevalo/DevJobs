@@ -36,6 +36,6 @@ const skillsSelected = () => {
        skills.add(selected.textContent);
     });
 
-    document.querySelector('#skills').value = skillsArray
+    document.querySelector('#skills').value = skillsArray;
     console.log('Seleccionadas:', selected);
 };
