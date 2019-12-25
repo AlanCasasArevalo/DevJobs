@@ -17,7 +17,6 @@ const usersSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        trim: true,
         required: 'La contraseña del usuario es obligatoria',
     },
     token :  String,
