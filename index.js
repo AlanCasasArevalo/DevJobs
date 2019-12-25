@@ -10,6 +10,7 @@ require('dotenv').config({path: 'global_variables.env'});
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const flash = require('connect-flash');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -38,6 +39,15 @@ app.use(session({
         mongooseConnection: mongoose.connection
     })
 }));
+
+//Alerts and flash message
+app.use(flash());
+
+app.use((req, res, next) =>{
+   res.locals.message = req.flash();
+
+    next()
+});
 
 app.set('view engine', 'handlebars');
 
