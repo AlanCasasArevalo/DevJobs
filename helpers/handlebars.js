@@ -17,5 +17,19 @@ module.exports = {
         return options.fn(this).replace(
             new RegExp(`value="${selected}"`), '$& selected="selected"'
         )
+    },
+    showAlerts: (errors = {}, alerts) => {
+        const category = Object.keys(errors);
+        let html = '';
+        if (category && typeof category !== 'undefined' && category.length > 0) {
+            errors[category].forEach( error => {
+                html += `
+                        <div class="${category.toString().toLowerCase()} alerta">
+                            ${error}
+                        </div>
+                        `
+            })
+        }
+        return alerts.fn().html = html;
     }
 };

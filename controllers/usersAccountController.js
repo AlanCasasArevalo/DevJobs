@@ -33,8 +33,14 @@ exports.registerValidation = async (req, res, next) => {
     await check('confirm', 'Confirmar contraseña no puede ir vacio y tiene que coincider con la contraseña anterior').isLength({min: 6}).run(req);
     await check('password', 'La contraseña y la confirmacion han de ser iguales').equals(req.body.confirm).run(req);
     const result = validationResult(req);
-    if (result && typeof result !== 'undefined' && !result.isEmpty()) {
-        return res.status(422).json({errors: result.array()});
+    if (result && typeof result !== 'undefined' && !result.isEmpty() && result.array().length > 0) {
+        req.flash('Error', result.array().map( error => error.msg ));
+        res.render('creation-account', {
+            pageName: 'Crea una nueva cuenta en devJobs',
+            tagline: 'Comienza a publicar tus vacantes de trabajo gratis, solo crea tu cuenta',
+            messages: req.flash()
+        });
+        return;
     } else {
         next()
     }

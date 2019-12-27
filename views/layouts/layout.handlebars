@@ -36,9 +36,13 @@
         {{/if}}
     </header>
     <div class="contenido-superior contenedor">
+
+        {{#if messages}}
+            {{#showAlerts messages}}
+            {{/showAlerts}}
+        {{/if}}
         {{{ body }}}
     </div>
-
     <script src="/js/trix.js"></script>
     <script src="/dist/bundle.js"></script>
 

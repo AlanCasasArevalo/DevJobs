@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const skills = document.querySelector('.lista-conocimientos')
 
+    
+
     if (skills && typeof skills !== 'undefined'){
         skills.addEventListener('click', addNewSkill)
         // Si estamos en editar llamamos a la funcion
