@@ -1,7 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const skills = document.querySelector('.lista-conocimientos')
 
-    
+    let alerts = document.querySelector('.alertas')
+
+    if(alerts && typeof alerts !== 'undefined') {
+        cleanAlerts()
+    }
 
     if (skills && typeof skills !== 'undefined'){
         skills.addEventListener('click', addNewSkill)
@@ -40,4 +44,16 @@ const skillsSelected = () => {
 
     document.querySelector('#skills').value = skillsArray;
     console.log('Seleccionadas:', selected);
+};
+
+const cleanAlerts = () => {
+    const alerts = document.querySelector('.alertas');
+    const interval = setInterval(() => {
+        if (alerts.children.length > 0) {
+            alerts.removeChild(alerts.children[0])
+        } else if (alerts.children.length === 0) {
+            alerts.parentElement.removeChild(alerts);
+            clearInterval(interval);
+        }
+    }, 2000)
 };

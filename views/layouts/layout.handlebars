@@ -38,8 +38,10 @@
     <div class="contenido-superior contenedor">
 
         {{#if messages}}
-            {{#showAlerts messages}}
-            {{/showAlerts}}
+            <div class="alertas">
+                {{#showAlerts messages}}
+                {{/showAlerts}}
+            </div>
         {{/if}}
         {{{ body }}}
     </div>
