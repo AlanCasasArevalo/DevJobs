@@ -32,4 +32,19 @@ usersSchema.pre('save', async function (next) {
     next()
 });
 
+usersSchema.post('save', async function (error, doc, next) {
+    const errorName = error.name;
+    const errorCodeDuplicate = 11000;
+    if (errorName && typeof errorName !== 'undefined') {
+        switch (error.code) {
+            case 11000:
+                next('El correo ya esta registrado');
+                break;
+            default:
+                next(error);
+                break;
+        }
+    }
+});
+
 module.exports = mongoose.model('Users', usersSchema);

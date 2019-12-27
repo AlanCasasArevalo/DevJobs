@@ -49,7 +49,11 @@ module.exports = () => {
         usersAccountController.initSession
     );
 
-
+    //Reset passwords
+    router.get ('/usersAccount/reset-password',
+        usersAccountController.resetPassword
+    );
+    
 
 
 

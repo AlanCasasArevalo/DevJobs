@@ -12,11 +12,26 @@ exports.formCreationAccount = async (req, res) => {
 
 exports.userCreation = async (req, res, next) => {
     const user = new Users(req.body);
+
+    /*
+    // Otra manera de hacerlo
     const userToSave = await user.save();
     if (!userToSave || typeof userToSave === 'undefined') return next();
-    if (userToSave && typeof userToSave !== 'undefined') {
+if (userToSave && typeof userToSave !== 'undefined') {
         res.redirect('session-init')
+    } else {
+        return next();
     }
+  */
+    try {
+        await user.save();
+        res.redirect('session-init');
+    } catch (error) {
+        req.flash('error', error);
+        res.redirect('creation-account');
+    }
+
+
 };
 
 exports.registerValidation = async (req, res, next) => {
@@ -34,7 +49,7 @@ exports.registerValidation = async (req, res, next) => {
     await check('password', 'La contraseña y la confirmacion han de ser iguales').equals(req.body.confirm).run(req);
     const result = validationResult(req);
     if (result && typeof result !== 'undefined' && !result.isEmpty() && result.array().length > 0) {
-        req.flash('Error', result.array().map( error => error.msg ));
+        req.flash('Error', result.array().map(error => error.msg));
         res.render('creation-account', {
             pageName: 'Crea una nueva cuenta en devJobs',
             tagline: 'Comienza a publicar tus vacantes de trabajo gratis, solo crea tu cuenta',
@@ -47,7 +62,18 @@ exports.registerValidation = async (req, res, next) => {
 };
 
 exports.initSession = async (req, res, next) => {
+    res.render('session-init', {
+        pageName: 'Inicia una sesion en devJobs'
+    })
+
+};
+
+exports.formInitSession = async (req, res, next) => {
     res.render('session-init');
+};
+
+exports.resetPassword = async (req, res, next) => {
+    res.render('reset-password');
 };
 
 
