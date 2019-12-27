@@ -11,6 +11,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
+const passport = require('./config/passport')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -39,6 +40,11 @@ app.use(session({
         mongooseConnection: mongoose.connection
     })
 }));
+
+// Passport init
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 //Alerts and flash message
 app.use(flash());

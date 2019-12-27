@@ -3,6 +3,7 @@ const router = express.Router();
 const homeController = require('../controllers/homeController');
 const vacancyController = require('../controllers/vacancyController');
 const usersAccountController = require('../controllers/usersAccountController');
+const authController = require('../controllers/authController');
 
 module.exports = () => {
 
@@ -49,11 +50,15 @@ module.exports = () => {
         usersAccountController.initSession
     );
 
+    router.post ('/usersAccount/session-init',
+        authController.userAuthentication
+    );
+
     //Reset passwords
     router.get ('/usersAccount/reset-password',
         usersAccountController.resetPassword
     );
-    
+
 
 
 
