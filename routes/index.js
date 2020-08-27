@@ -7,7 +7,6 @@ const authController = require('../controllers/authController');
 
 module.exports = () => {
 
-
     router.get ('/', (req, res) => {
         res.send('funciona')
     });
@@ -54,79 +53,18 @@ module.exports = () => {
         authController.userAuthentication
     );
 
+    // Panel de administracion
+    router.get ('/administration',
+        authController.showAdministrationPanel
+    );
+
     //Reset passwords
     router.get ('/usersAccount/reset-password',
         usersAccountController.resetPassword
     );
 
-
-
-
     //Security paths
-    router.get('*', async (req, res) => {
-        res.status(404).json({
-            result: false,
-            message: 'No existe esa direccion'
-        })
-    });
-
-    router.post('*', async (req, res) => {
-        res.status(404).json({
-            result: false,
-            message: 'No existe esa direccion'
-        })
-    });
-
-    router.put('*', async (req, res) => {
-        res.status(404).json({
-            result: false,
-            message: 'No existe esa direccion'
-        })
-    });
-
-    router.delete('*', async (req, res) => {
-        res.status(404).json({
-            result: false,
-            message: 'No existe esa direccion'
-        })
-    });
-
-    router.patch('*', async (req, res) => {
-        res.status(404).json({
-            result: false,
-            message: 'No existe esa direccion'
-        })
-    });
-
-    router.head('*', async (req, res) => {
-        res.status(404).json({
-            result: false,
-            message: 'No existe esa direccion'
-        })
-    });
-
-    router.trace('*', async (req, res) => {
-        res.status(404).json({
-            result: false,
-            message: 'No existe esa direccion'
-        })
-    });
-
-    router.options('*', async (req, res) => {
-        res.status(404).json({
-            result: false,
-            message: 'No existe esa direccion'
-        })
-    });
-
-    router.patch('*', async (req, res) => {
-        res.status(404).json({
-            ok: false,
-            message: 'Direccion no encontrada'
-        })
-    });
-
-    router.delete('*', async (req, res) => {
+    router.all('*', async (req, res) => {
         res.status(404).json({
             ok: false,
             message: 'Direccion no encontrada'
