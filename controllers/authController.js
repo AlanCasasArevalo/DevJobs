@@ -7,6 +7,16 @@ exports.userAuthentication = passport.authenticate('local', {
     badRequestMessage: 'Ambos campos son obligatorios'
 });
 
+
+// Controlar si el usuario esta autenticado
+exports.userVerification = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        return next()
+    } else {
+        res.redirect('/usersAccount/session-init')
+    }
+}
+
 exports.showAdministrationPanel = (req, res) => {
     res.render('administration', {
         pageName: 'Panel de administracion',

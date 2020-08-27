@@ -16,21 +16,26 @@ module.exports = () => {
     );
 
     router.get('/vacancies/new',
+        authController.userVerification,
         vacancyController.newVacancyForm
     );
 
     router.post('/vacancies/new',
+        authController.userVerification,
         vacancyController.addNewVacancy
     );
+
     router.get('/vacancies/:url',
         vacancyController.showVacancy
     );
 
     router.post('/vacancies/edit/:url',
+        authController.userVerification,
         vacancyController.editVacancy
     );
 
     router.get('/vacancies/edit/:url',
+        authController.userVerification,
         vacancyController.formEditVacancy
     );
 
@@ -55,6 +60,7 @@ module.exports = () => {
 
     // Panel de administracion
     router.get ('/administration',
+        authController.userVerification,
         authController.showAdministrationPanel
     );
 
